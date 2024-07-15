@@ -1,0 +1,41 @@
+﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<UsuarioModel>;
+
+<h1>Usuarios</h1>
+<a role="button" class="btn btn-primary btn-block" asp-controller="Usuario" asp-action="Criar"> Adicionar Usuario</a>
+<table class="table">
+    <thead class="thead-dark">
+
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Perfil
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+            <th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nome</td>
+                <td>@usuario.Perfil</td>
+                <td>@usuario.Email</td>
+                <td>
+                    <a href="">EDIT</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
