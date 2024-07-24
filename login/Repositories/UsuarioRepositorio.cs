@@ -55,9 +55,19 @@ namespace login.Repositories
             return _context.Usuarios.FirstOrDefault(x => x.Id == id);
         }
 
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper( ));
+        }
+
         public List<UsuarioModel> BuscarTodos()
         {
             return _context.Usuarios.ToList();
+        }
+
+        public bool EmailJaRegistrado()
+        {
+            return true;
         }
     }
 }

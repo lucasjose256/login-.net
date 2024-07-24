@@ -5,6 +5,7 @@ namespace login.Repositories
     public interface IUsuarioRepositorio
     {
 
+     UsuarioModel BuscarPorLogin(string username);
         List<UsuarioModel> BuscarTodos();
 
        UsuarioModel BuscarPorId(int id);

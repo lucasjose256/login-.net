@@ -1,24 +1,40 @@
 ﻿using login.Models;
+using login.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace login.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+
+        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        {
+            _usuarioRepositorio= usuarioRepositorio;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
        [HttpPost]
-        public IActionResult Entrar(LoginModel login) {
+        public IActionResult Entrar(LoginModel loginModel) {
             try {
             
                 if(ModelState.IsValid) {
 
-                    return RedirectToAction("Index", "Home");
+                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
+                    if (usuario != null)
+                    {
+                        if (usuario.Senha==loginModel.Senha)
+                        {
+                            return RedirectToAction("Index", "Home");
+
+                        }
+                    }
+
                 }
-                return View("index");
+                return View("Index");
 
             }catch (Exception ex)
             {
